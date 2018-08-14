@@ -84,6 +84,11 @@
         <button  @click="reset "name="reset" type="reset" class="btn btn-primary">Reset</button>
       </div>
     </div>
+    <div class="form-group row">
+      <div class="offset-4 col-8">
+        <button  @click="preview "name="preview" type="button" class="btn btn-primary">Preview</button>
+      </div>
+    </div>
   </form>
   </div>
 </template>
@@ -116,6 +121,14 @@ export default {
 
     reset(car){
         this.car = {}
+    },
+    preview(car){
+        alert(`Model:${this.car.model}
+                 Brand: ${this.car.brand}
+                 Year:${this.car.year}
+                 Maximum Speed: ${this.car.maxSpeed}
+                 Engine: ${this.car.engine}
+                 Is Automatic: ${this.car.isAutomatic}`);
     }
   }
       
