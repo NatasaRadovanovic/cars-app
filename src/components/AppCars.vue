@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h2>App Cars</h2>
+  <h2 style="text-align:center">App Cars</h2>
    <div
    class="list-group-item list-group-item"
    v-for="(car, key) in cars" :key="key" 
@@ -11,7 +11,7 @@
     Max Speed {{ car.maxSpeed }} <br>
    Is Automatic {{ car.isAutomatic }} <br>
    Engine {{ car.engine }} <br>
-  Number of doors: {{ car.numberOfDoors }} <br>
+    Numner of Doors: {{ car.numberOfDoors }} <br>
    </div> 
   </div>
 </template>
