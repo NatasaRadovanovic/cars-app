@@ -5,13 +5,13 @@
    class="list-group-item list-group-item"
    v-for="(car, key) in cars" :key="key" 
    exact-active-class = "active">
-   {{ car.brand }} <br>
-    {{ car.model }} <br>
-    {{ car.year }} <br>
-    {{ car.maxSpeed }} <br>
-    {{ car.isAutomatic }} <br>
-    {{ car.engine }} <br>
-    {{ car.numberOfDoors }} <br>
+   Brand: {{ car.brand }} <br>
+   Model: {{ car.model }} <br>
+   Year: {{ car.year }} <br>
+    Max Speed {{ car.maxSpeed }} <br>
+   Is Automatic {{ car.isAutomatic }} <br>
+   Engine {{ car.engine }} <br>
+  Number of doors: {{ car.numberOfDoors }} <br>
    </div> 
   </div>
 </template>

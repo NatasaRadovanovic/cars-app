@@ -10,6 +10,9 @@
       <li class="nav-item active">
          <router-link to="/cars" class="nav-item nav-link">Cars</router-link>
       </li>
+      <li class="nav-item">
+         <router-link to="/add-car" class="nav-item nav-link">Add car</router-link>
+      </li>
     </ul>
   </div>
 </nav>

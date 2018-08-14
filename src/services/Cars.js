@@ -8,6 +8,10 @@ export default class Cars{
     getAll(){
         return axios.get('cars'); 
     }
+
+    add(car){
+        return axios.post('cars', car); 
+    }
 }
 
 export const cars = new Cars();
