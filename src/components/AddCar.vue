@@ -122,16 +122,16 @@ created(){
 
      addContact(){
         cars.add(this.car)
-      .then(response => {
+        .then(response => {
         this.$router.push('/cars')
       })
-      .catch(err => console.log(err))
+       .catch(err => console.log(err))
     },
 
      editContact(){
-         cars.edit(this.car)
+      cars.edit(this.car)
       .then(response=> {
-        this.$router.push('/cars')
+       this.$router.push('/cars')
       })
       .catch(err => console.log(err))
     },
@@ -146,13 +146,13 @@ created(){
                  Maximum Speed: ${this.car.maxSpeed}
                  Engine: ${this.car.engine}
                  Is Automatic: ${this.car.isAutomatic}`);
-    }
-  }
-      
-  }
+     }
+   }
+}
 
 </script>
 
 <style>
+
 
 </style>
