@@ -12,7 +12,9 @@
    Is Automatic {{ car.isAutomatic }} <br>
    Engine {{ car.engine }} <br>
   Numner of Doors: {{ car.numberOfDoors }} <br>
-  <router-link :to="{ name: 'edit-car', params: { id: car.id } }" class="btn btn-default">Edit</router-link>
+  <router-link :to="{ name: 'edit-car', params: { id: car.id } }" class="btn btn-default">
+  <button>Edit</button></router-link>
+  <button @click ="onDelete(car)">Delete</button>
    </div> 
   </div>
 </template>
@@ -38,6 +40,16 @@ export default {
       })
       .catch(err => console.log(err))
     },
+
+    methods:{
+     onDelete (car) {
+      cars.delete(car.id)
+        .then((success) => {
+          let carIndex = this.cars.findIndex(c => c.id === car.id)
+          this.cars.splice(carIndex, 1)
+        })
+    }
+  }
 }
 </script>
 
