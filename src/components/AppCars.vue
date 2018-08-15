@@ -8,10 +8,11 @@
    Brand: {{ car.brand }} <br>
    Model: {{ car.model }} <br>
    Year: {{ car.year }} <br>
-    Max Speed {{ car.maxSpeed }} <br>
+  Max Speed {{ car.maxSpeed }} <br>
    Is Automatic {{ car.isAutomatic }} <br>
    Engine {{ car.engine }} <br>
-    Numner of Doors: {{ car.numberOfDoors }} <br>
+  Numner of Doors: {{ car.numberOfDoors }} <br>
+  <router-link :to="{ name: 'edit-car', params: { id: car.id } }" class="btn btn-default">Edit</router-link>
    </div> 
   </div>
 </template>

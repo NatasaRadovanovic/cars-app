@@ -9,8 +9,16 @@ export default class Cars{
         return axios.get('cars'); 
     }
 
+    get(id){
+        return axios.get(`cars/${id}`); 
+    }
+
     add(car){
         return axios.post('cars', car); 
+    }
+
+    edit(car){
+        return axios.put(`cars/${car.id}`,car);     
     }
 }
 

@@ -108,13 +108,30 @@ export default {
         .map((x,y) => x+y)
     }
   },
-
+created(){
+    if(this.$route.params.id){
+      cars.get(this.$route.params.id)
+      .then(response => (this.car = response.data))
+      .catch(err => console.log(err))
+    }
+  },
  methods:{
        onSubmit(){
+        this.$route.params.id ? this.editContact() : this.addContact()
+    },
+
+     addContact(){
         cars.add(this.car)
-        .then(response => {
+      .then(response => {
         this.$router.push('/cars')
-        console.log(this.$router);
+      })
+      .catch(err => console.log(err))
+    },
+
+     editContact(){
+         cars.edit(this.car)
+      .then(response=> {
+        this.$router.push('/cars')
       })
       .catch(err => console.log(err))
     },
