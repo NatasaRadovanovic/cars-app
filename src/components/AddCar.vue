@@ -102,7 +102,9 @@ export default {
 
   data(){
     return{
-      car:{},
+      car:{
+        isAutomatic:false,
+      },
         years: Array(29)
         .fill(1990)
         .map((x,y) => x+y)
@@ -137,7 +139,9 @@ created(){
     },
 
     reset(car){
-        this.car = {}
+        this.car = {
+          isAutomatic:false,
+        }
     },
     preview(car){
         alert(`Model:${this.car.model}

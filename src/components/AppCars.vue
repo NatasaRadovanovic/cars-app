@@ -44,10 +44,11 @@ export default {
        if(confirm('Are you sure you want to delete this car?'))
        {
          cars.delete(car.id)
-         .then((success) => {
+         .then(response => {
           let carIndex = this.cars.findIndex(c => c.id === car.id)
           this.cars.splice(carIndex, 1)
         })
+        .catch(err => console.log(err))
        }
      }
   }
