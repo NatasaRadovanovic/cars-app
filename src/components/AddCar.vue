@@ -5,33 +5,50 @@
     <div class="form-group row">
       <label class="col-4 col-form-label" for="brand">Brand</label> 
       <div class="col-8">
-        <input id="brand" name="brand" type="text" class="form-control here" required="required" minlength="2" v-model="car.brand">
+        <input autofocus id="brand" name="brand" type="text" class="form-control here" 
+          v-validate="'required|min:2'"  v-model="car.brand" >
+        <div class="helo-block alert alert-danger"  v-show="errors.has('brand')">
+          {{ errors.first('brand') }}
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <label for="model" class="col-4 col-form-label">Model</label> 
       <div class="col-8">
-        <input id="model" name="model" type="text" class="form-control here" required="required" minlength="2" v-model="car.model">
+        <input id="model" name="model" type="text" class="form-control here"
+          v-validate="'required|min:2'" v-model="car.model">
+        <div class="helo-block alert alert-danger"  v-show="errors.has('model')">
+          {{ errors.first('model') }}
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <label for="year" class="col-4 col-form-label">Year</label> 
       <div class="col-8">
-        <select id="year" name="year" class="custom-select" required="required" v-model="car.year">
+        <select id="year" name="year" class="custom-select" v-validate="'required'"  v-model="car.year">
           <option v-for="year in years" :value="year" :key="year">{{ year }}</option>
         </select>
+        <div class="helo-block alert alert-danger"  v-show="errors.has('year')">
+          {{ errors.first('year') }}
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <label for="speed" class="col-4 col-form-label">Maximum Speed</label> 
       <div class="col-8">
-        <input id="speed" name="speed" type="number" class="form-control here" required="required" v-model="car.maxSpeed">
+        <input id="speed" name="speed" type="number" class="form-control here" v-validate="'required'" v-model="car.maxSpeed">
+         <div class="helo-block alert alert-danger"  v-show="errors.has('speed')">
+          {{ errors.first('speed') }}
+        </div>
       </div>
     </div>
     <div class="form-group row">
       <label for="doors" class="col-4 col-form-label">Number of Doors</label> 
       <div class="col-8">
-        <input id="doors" name="doors" type="number" class="form-control here" required="required" v-model="car.numberOfDoors">
+        <input id="doors" name="doors" type="number" class="form-control here" v-validate="'required'" v-model="car.numberOfDoors">
+         <div class="helo-block alert alert-danger"  v-show="errors.has('doors')">
+          {{ errors.first('doors') }}
+        </div>
       </div>
     </div>
     <div class="form-group row">
@@ -39,27 +56,30 @@
       <div class="col-8">
         <div class="form-check">
           <label class="form-check-label">
-            <input name="engine" type="radio" required="required" class="form-check-input" value="electric" v-model="car.engine">
+            <input name="engine" type="radio" v-validate="'required'" class="form-check-input" value="electric" v-model="car.engine">
             Electric
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input name="engine" type="radio" required="required" class="form-check-input" value="petrol" v-model="car.engine">
+            <input name="engine" type="radio" v-validate="'required'" class="form-check-input" value="petrol" v-model="car.engine">
             Petrol
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input name="engine" type="radio" required="required" class="form-check-input" value="hybrid" v-model="car.engine">
+            <input name="engine" type="radio" v-validate="'required'" class="form-check-input" value="hybrid" v-model="car.engine">
             Hybrid
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input name="engine" type="radio" required="required" class="form-check-input" value="diesel" v-model="car.engine">
+            <input name="engine" type="radio" v-validate="'required'" class="form-check-input" value="diesel" v-model="car.engine">
             Diesel
           </label>
+           <div class="helo-block alert alert-danger"  v-show="errors.has('engine')">
+            {{ errors.first('engine') }}
+        </div>
         </div>
       </div>
     </div>
@@ -107,7 +127,7 @@ export default {
       },
         years: Array(29)
         .fill(1990)
-        .map((x,y) => x+y)
+        .map((x,y) => x+y),
     }
   },
 created(){
@@ -119,8 +139,11 @@ created(){
   },
  methods:{
        onSubmit(){
-        this.$route.params.id ? this.editContact() : this.addContact()
-    },
+         this.$validator.validateAll()
+         .then(response =>{
+           this.$route.params.id ? this.editContact() : this.addContact()
+         })
+      },
 
      addContact(){
         cars.add(this.car)
@@ -150,7 +173,7 @@ created(){
                  Maximum Speed: ${this.car.maxSpeed}
                  Engine: ${this.car.engine}
                  Is Automatic: ${this.car.isAutomatic}`);
-     }
+     },
    }
 }
 
